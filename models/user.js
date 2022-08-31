@@ -1,26 +1,26 @@
-const sequelize =  require('sequelize');
-const seqConnection = require('../config/seqConnection');
+const Sequelize = require('sequelize');
+const sequelizeConnection = require('../config/sequelizeConnection');
 const bcrypt = require('bcrypt');
 
-const User = seqConnection.define('user',{
+const User = sequelizeConnection.define('user', {
 
     id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
 
     username: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
-            len: [5, 30],
+            len: [3, 26],
         }
     },
 
     password: {
-        type: sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
             len: [5, 60]
@@ -28,16 +28,21 @@ const User = seqConnection.define('user',{
     }
 
 }, {
-    sequelize: seqConnection,
+    sequelize: sequelizeConnection,
     timestamps: false,
     freezeTableName: true,
     modelName: 'users',
-    underscored: true
+    underscored: true,
 });
 
 User.beforeCreate(async user => {
-    user.password = await bcrypt.hash(user.password, 10);
-})
+    const userData = user.dataValues;
+    userData.password = await bcrypt.hash(userData.password, 10);
+});
 
+User.prototype.validatePassword = function (rawPassword) {
+    console.log('this user password: ', this.password);
+    return bcrypt.compare(rawPassword, this.password);
+}
 
 module.exports = User;

@@ -1,48 +1,44 @@
-const sequelize =  require('sequelize');
-const seqConnection = require('../config/seqConnection');
+const Sequelize = require('sequelize');
+const sequelizeConnection = require('../config/sequelizeConnection');
 
-const Comment = seqConnection.define('comment',{
+const Comment = sequelizeConnection.define('comment', {
 
     id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
 
     content: {
-        type: sequelize.TEXT,
-        allowNull: false,
+        type: Sequelize.TEXT,
+        allowNull: false
     },
 
     post_id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         reference: {
             model: 'Post',
             key: 'id'
-          
         }
     },
 
     user_id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         reference: {
             model: 'User',
             key: 'id'
-          
         }
-    },
+    }
 
 }, {
-    sequelize: seqConnection,
+    sequelize: sequelizeConnection,
     timestamps: true,
     freezeTableName: true,
     modelName: 'comments',
     underscored: true
 });
-
-
 
 module.exports = Comment;

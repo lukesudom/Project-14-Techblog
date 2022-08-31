@@ -1,46 +1,40 @@
-const sequelize =  require('sequelize');
-const seqConnection = require('../config/seqConnection');
+const Sequelize = require('sequelize');
+const sequelizeConnection = require('../config/sequelizeConnection');
 
-
-const Post = seqConnection.define('post',{
+const Post = sequelizeConnection.define('post', {
 
     id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
 
     title: {
-        type: sequelize.STRING,
-        allowNull: false,
-
+        type: Sequelize.STRING,
+        allowNull: false
     },
 
     content: {
-        type: sequelize.TEXT,
-        allowNull: false,
+        type: Sequelize.TEXT,
+        allowNull: false
     },
 
     user_id: {
-        type: sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         reference: {
             model: 'User',
             key: 'id'
-          
         }
     }
 
-
-
 }, {
-    sequelize: seqConnection,
+    sequelize: sequelizeConnection,
     timestamps: true,
     freezeTableName: true,
     modelName: 'posts',
     underscored: true
 });
-
 
 module.exports = Post;
