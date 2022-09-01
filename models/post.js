@@ -1,3 +1,4 @@
+
 const Sequelize = require('sequelize');
 const sequelizeConnection = require('../config/sequelizeConnection');
 

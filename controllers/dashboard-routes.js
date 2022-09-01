@@ -14,7 +14,6 @@ router.get('/', withAuth, async (req, res) => {
         user_id: req.session.userId,
       }
     });
-
     const posts = postData.map((post) => post.get({ plain: true }));
     res.render('all-posts-admin', {
       layout: 'dashboard',
@@ -25,7 +24,6 @@ router.get('/', withAuth, async (req, res) => {
     res.redirect('login');
   }
 });
-
 
 router.get('/new', withAuth, (req, res) => {
   res.render('new-post', {

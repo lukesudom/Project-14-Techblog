@@ -1,7 +1,11 @@
+//Requirements
+
 const router = require('express').Router();
 const { Post } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
+
+// Create new post
 router.post('/', withAuth, async (req, res) => {
   const body = req.body;
 
@@ -15,6 +19,8 @@ router.post('/', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//Update post
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
@@ -34,6 +40,9 @@ router.put('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+//Delete new Post
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
