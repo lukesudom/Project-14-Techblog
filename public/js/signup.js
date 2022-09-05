@@ -18,9 +18,13 @@ const signupFormHandler = async function(event) {
   if (response.ok) {
     document.location.replace('/dashboard');
   } else {
-    alert('Failed to sign up: ' + responseData.message);
+    alert('Signup failed' );
   }
 };
+
+
+
+//Click handlers
 
 document
   .querySelector('#signup-btn')

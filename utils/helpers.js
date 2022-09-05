@@ -1,5 +1,10 @@
+
+//Requirements
+
 const globals = {};
 
+
+//Date and time helpers for each post
 module.exports = {
     formatDate: date => {
         return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(

@@ -1,6 +1,10 @@
+//Requirements
 
-const Sequelize = require('sequelize');
+
 const sequelizeConnection = require('../config/sequelizeConnection');
+const Sequelize = require('sequelize');
+
+//Post models
 
 const Post = sequelizeConnection.define('post', {
 
@@ -37,5 +41,8 @@ const Post = sequelizeConnection.define('post', {
     modelName: 'posts',
     underscored: true
 });
+
+
+//Exports
 
 module.exports = Post;

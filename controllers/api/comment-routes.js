@@ -1,7 +1,13 @@
+//Requirements
+
 const router = require('express').Router();
 const { Comment } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
+//ROUTES
+
+
+// Create post connection which allows us to comment on new posts
 router.post('/', withAuth, async (req, res) => {
   try {
     console.log('request body: ', req.body);

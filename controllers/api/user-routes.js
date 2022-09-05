@@ -1,5 +1,11 @@
+// Requirements
+
 const router = require('express').Router();
 const { User } = require('../../models');
+
+//ROUTES
+
+//Create new user 
 
 router.post('/', async (req, res) => {
   try {
@@ -10,15 +16,19 @@ router.post('/', async (req, res) => {
     });
 
     if (existingUser) {
-      console.log('this username is already taken');
-      res.status(500).json({ message: 'username already taken' });
+      console.log('Username already taken');
+      res.status(500).json({ message: 'Sorry! this username is already in use!' });
       return;
     }
+
+    //here we create the user 
 
     const newUser = await User.create({
       username: req.body.username,
       password: req.body.password,
     });
+
+    //save the user to db
 
     req.session.save(() => {
       req.session.userId = newUser.id;
@@ -29,10 +39,12 @@ router.post('/', async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: 'Invalid entries or server error' });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
+
+//Login route - working 
 
 router.post('/login', async (req, res) => {
   try {
@@ -43,12 +55,12 @@ router.post('/login', async (req, res) => {
     });
 
     if (!user) {
-      res.status(400).json({ message: 'No user account found!' });
+      res.status(400).json({ message: 'Sorry! No account found!' });
       return;
     }
 
     if (!(await user.validatePassword(req.body.password))) {
-      res.status(400).json({ message: 'Invalid password' });
+      res.status(400).json({ message: 'Sorry! The password you entered is incorrect!' });
       return;
     }
 
@@ -57,13 +69,16 @@ router.post('/login', async (req, res) => {
       req.session.username = user.username;
       req.session.loggedIn = true;
 
-      res.json({ user, message: 'You are now logged in!' });
+      res.json({ user, message: 'Successfully logged in' });
     });
   } catch (err) {
     console.log(err);
-    res.status(400).json({ message: 'Some weird error' });
+    res.status(400).json();
   }
 });
+
+
+//Logut route - working 
 
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
@@ -75,4 +90,6 @@ router.post('/logout', (req, res) => {
   }
 });
 
-module.exports = router;
+//Exports
+
+module.exports = router

@@ -5,10 +5,9 @@ const newFormHandler = async function(event) {
   const content = document.querySelector('#content-field').value.trim();
 
   if (!(title && content)) {
-    alert('Invalid form. Please fill out all required fields');
+    alert('Please fill out all forms');
     return;
   }
-
   await fetch(`/api/post`, {
     method: 'POST',
     body: JSON.stringify({
@@ -17,11 +16,12 @@ const newFormHandler = async function(event) {
     }),
     headers: { 'Content-Type': 'application/json' },
   });
-
   document.location.replace('/dashboard');
 };
 
-console.log('running new post script');
+
+
+//Click handlers
 
 document
   .querySelector('#submit-btn')

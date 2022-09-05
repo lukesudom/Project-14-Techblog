@@ -119,8 +119,10 @@
     padding: 3% 4%;
     background-color: var(--dark);
     color: var(--primary);
+    margin: 2rem;
   }
-  
+
+
   .hero p {
     max-width: 75%;
   }
@@ -164,6 +166,12 @@
     color: var(--primary);
     border-radius: var(--border-radius);
     text-decoration: none;
+  }
+
+  .post-box {
+    margin: 0 0 20px 0;
+    border: 3px solid var(--dark);
+    border-radius: var(--border-radius);
   }
   
   /* CARDS */

@@ -1,8 +1,14 @@
+//Requirements 
+
+
 const {
   User,
   Post,
   Comment
 } = require('../models');
+
+
+//User seeds - working
 
 const users = [
 
@@ -16,7 +22,7 @@ const users = [
   },
   {
       username: 'Ronny',
-      password:'afd33af22'
+      password:'rodog'
   },
   {
       username: 'Sam',
@@ -31,6 +37,8 @@ const users = [
       password:'agadaf33wd'
   }
 ]
+
+//User posts - working
 
 const posts = [
   {
@@ -50,6 +58,8 @@ const posts = [
   }
 ]
 
+//User comments - working
+
 const comments = [
   {
       user_id:3,
@@ -62,6 +72,7 @@ const comments = [
       post_id:2
   }
 ]
+
 
 
 const plantSeeds = async () => {

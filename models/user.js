@@ -1,6 +1,10 @@
-const Sequelize = require('sequelize');
+//Requirements 
+
 const sequelizeConnection = require('../config/sequelizeConnection');
 const bcrypt = require('bcrypt');
+const Sequelize = require('sequelize');
+
+//User models
 
 const User = sequelizeConnection.define('user', {
 
@@ -35,14 +39,21 @@ const User = sequelizeConnection.define('user', {
     underscored: true,
 });
 
+
+//hashing of password
+
 User.beforeCreate(async user => {
     const userData = user.dataValues;
     userData.password = await bcrypt.hash(userData.password, 10);
 });
 
+///validation
+
 User.prototype.validatePassword = function (rawPassword) {
     console.log('this user password: ', this.password);
     return bcrypt.compare(rawPassword, this.password);
 }
+
+//Exports
 
 module.exports = User;

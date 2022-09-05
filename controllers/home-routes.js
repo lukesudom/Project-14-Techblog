@@ -1,7 +1,12 @@
+//Requirements
+
+
 const router = require('express').Router();
 const { Post, Comment, User } = require('../models/');
 
-// get all posts for homepage
+//ROUTES
+
+// all homepage posts - working
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -21,14 +26,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// get single post
+// single post - working
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       attributes: {
         exclude: ['user_id', 'updatedAt'] 
       },
-
       include: [
         { 
           model: User, 
@@ -45,9 +49,7 @@ router.get('/post/:id', async (req, res) => {
         },
       ],
     });
-
     if (postData) {
-      const post = postData.get({ plain: true });
       res.render('single-post', { 
         payload: { posts: [post], session: req.session }
       });
@@ -60,6 +62,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+// Login routes -- working
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -69,6 +72,9 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+
+//signup routes -- working
+
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -77,5 +83,10 @@ router.get('/signup', (req, res) => {
 
   res.render('signup');
 });
+
+
+
+
+//Exports
 
 module.exports = router;

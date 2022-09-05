@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +10,14 @@
 
 <body class="flex-column min-100-vh">
   <nav class="navbar">
-    <ul>   
+    <ul>
       <li class="li-inline nav-item"><a href="/">Home</a></li>
       <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
-      {{#if loggedIn}}
-      <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+      {{#if payload.session.loggedIn}}
+        <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
       {{else}}
-      <li class="li-inline nav-item"><a href="/login">Login</a></li>
+        <li class="li-inline nav-item"><a href="/login">Login</a></li>
       {{/if}}
-      
     </ul>
   </nav>
   <header class="hero">
@@ -37,4 +35,4 @@
 
 </html>
 
-<script src="/public/js/login.js"
+<script src="/js/logout.js"></script>

@@ -1,11 +1,13 @@
+
 //Requirements
 
-const router = require('express').Router();
 const { Post } = require('../../models/');
 const withAuth = require('../../utils/auth');
+const router = require('express').Router();
 
+//ROUTES
 
-// Create new post
+//Create user post - working
 router.post('/', withAuth, async (req, res) => {
   const body = req.body;
 
@@ -19,12 +21,11 @@ router.post('/', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+//Delete user post - working 
 
-//Update post
-
-router.put('/:id', withAuth, async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const [affectedRows] = await Post.update(req.body, {
+    const [affectedRows] = Post.destroy({
       where: {
         id: req.params.id,
       },
@@ -41,12 +42,11 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
+//Edit user post - working 
 
-//Delete new Post
-
-router.delete('/:id', withAuth, async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
-    const [affectedRows] = Post.destroy({
+    const [affectedRows] = await Post.update(req.body, {
       where: {
         id: req.params.id,
       },

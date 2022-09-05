@@ -1,7 +1,15 @@
-const router = require('express').Router();
+//Requirements
+
+
 const { Post, User, Comment } = require('../models/');
 const withAuth = require('../utils/auth');
+const router = require('express').Router();
 
+
+//ROUTES
+
+
+// Get all posts for dashboard - working
 router.get('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -25,16 +33,11 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/new', withAuth, (req, res) => {
-  res.render('new-post', {
-    layout: 'dashboard',
-  });
-});
+//Edit post route based off ID - working
 
 router.get('/edit/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
-
     if (postData) {
       const post = postData.get({ plain: true });
       res.render('edit-post', {
@@ -49,5 +52,16 @@ router.get('/edit/:id', withAuth, async (req, res) => {
     res.redirect('login');
   }
 });
+
+// New post route - working
+router.get('/new', withAuth, (req, res) => {
+  res.render('new-post', {
+    layout: 'dashboard',
+  });
+});
+
+
+
+//Exports
 
 module.exports = router;

@@ -1,6 +1,11 @@
+//Requirements 
+
 
 const Sequelize = require('sequelize');
 const sequelizeConnection = require('../config/sequelizeConnection');
+
+
+//Comment - models
 
 const Comment = sequelizeConnection.define('comment', {
 
@@ -41,5 +46,7 @@ const Comment = sequelizeConnection.define('comment', {
     modelName: 'comments',
     underscored: true
 });
+
+//Exports
 
 module.exports = Comment;
