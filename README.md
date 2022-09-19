@@ -13,31 +13,32 @@
 * [License](#License)
 
 ## Description
-Your challenge this week is to build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. You’ll build this site completely from scratch and deploy it to Heroku. Your app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+Your Challenge is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. You’ll use Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the Express.js and Mongoose packages, you may also optionally use a JavaScript date library of your choice or the native JavaScript Date object to format timestamps.
 
 ## Usage
-While inside the /db - mysql -uroot -p | SOURCE schema.sql | while inside the project file - npm start
+```
+node server.js
+```
 
 ## User Story
-
-AS A developer who writes about tech
-
-I WANT a CMS-style blog site
-
-SO THAT I can publish articles, blog posts, and my thoughts and opinions
-
+```
+AS A social media startup
+I WANT an API for my social network that uses a NoSQL database
+SO THAT my website can handle large amounts of unstructured data
+```
 
 ## Installation
+```
 npm i
+```
 
 ## Skills
-- HTML - CSS - Bootstrap - Node.JS - JS - Express.js - Express-handlebars - MySQL2 - DotEnv - Sequelize - Bcrypt - Connect session sequelize - Herouku - Express session
+- MongoDB, Mongoose, Express, Node.js
 
 ## Credits
 Youtube tutorials:
- https://www.youtube.com/watch?v=rKay_97xwW4&ab_channel=WilliamHorn
- https://www.youtube.com/watch?v=uip9axsPRDY&ab_channel=WilliamHorn
- https://www.youtube.com/watch?v=uip9axsPRDY&ab_channel=WilliamHorn
+https://www.youtube.com/watch?v=DZBGEVgL2eE&ab_channel=WebDevSimplified
+https://www.youtube.com/watch?v=bxsemcrY4gQ&ab_channel=TheNetNinja
 
 
 
